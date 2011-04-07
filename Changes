@@ -1,4 +1,7 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
+0.02    Thu Apr 07 13:27:39 2011
+        - Added missing pre-requisite modules to Build.PL and Makefile.PL.
+
 0.01    Thu Apr 07 10:12:13 2011
         - First version released.

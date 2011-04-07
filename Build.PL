@@ -9,7 +9,11 @@ my $builder = Module::Build->new(
     dist_version_from => 'lib/TV/ProgrammesSchedules/BBC.pm',
     add_to_cleanup    => [ 'TV-ProgrammesSchedules-BBC-*' ],    
     build_requires    => {
-        'Test::More'  => 0,
+        'Test::More'      => 0,
+        'Readonly'        => 0,
+        'Time::localtime' => '1.02',
+        'HTTP::Request'   => '1.40',
+        'LWP::UserAgent'  => '2.33',
     },
 );
 

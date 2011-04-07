@@ -17,11 +17,11 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
 Readonly my $CHANNELS => 
@@ -342,9 +342,9 @@ L<http://search.cpan.org/dist/TV-ProgrammesSchedules-BBC/>
 
 =head1 ACKNOWLEDGEMENTS
 
-TV::ProgrammesSchedules::BBC provides infornmation from BBC official website. The information should be used
-as it is without any modifications. BBC remains the sole owner of the data. The terms and condition for Personal 
-and Non-business use can be found here http://www.bbc.co.uk/terms/personal.shtml.
+TV::ProgrammesSchedules::BBC provides  information from BBC official website. This information should be 
+used as it is without any modifications. BBC remains the sole owner of the data. The terms and condition 
+for Personal and Non-business use can be found here http://www.bbc.co.uk/terms/personal.shtml.
 
 =head1 LICENSE AND COPYRIGHT
 
