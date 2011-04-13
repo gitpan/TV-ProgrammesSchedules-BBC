@@ -1,5 +1,9 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
+0.04    Wed Apr 13 17:04{00 2011
+        - Cosmetics changes to the pod.
+        - Minor changes to the method as_string().
+
 0.03    Wed Apr 13 14:24:10 2011
         - Added internal method _validate_param().
         - Added unit test 01-unit-test.t for method _validate_param().
