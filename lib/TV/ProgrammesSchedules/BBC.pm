@@ -17,11 +17,11 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
 Readonly my $CHANNELS => 
@@ -116,7 +116,7 @@ CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA.
 =head1 CONSTRUCTOR
 
 The constructor expects a reference to an anonymous hash as input parameter. Table below shows 
-the possible value of various key (channel, location, yyyy, mm, dd). The yyyy, mm and dd are 
+the  possible  value of various key (channel, location, yyyy, mm, dd). The yyyy, mm and dd are 
 optional. If missing picks up the current year, month and day.
 
     -----------------------------------------------------------------------------
@@ -169,6 +169,7 @@ sub new
     my $class = shift;
     my $param = shift;
     
+    _validate_param($param);
     $param->{_browser} = LWP::UserAgent->new();
     unless (defined($param->{yyyy}) && defined($param->{mm}) && defined($param->{dd}))
     {
@@ -300,6 +301,40 @@ sub as_string
         $listings .= "-------------------\n";
     }
     return $listings;
+}
+
+sub _validate_param
+{
+    my $param = shift;
+    
+    croak("ERROR: Input param has to be a ref to HASH.\n")
+        if (ref($param) ne 'HASH');
+    croak("ERROR: Missing key channel.\n")
+        unless exists($param->{channel});
+    croak("ERROR: Invalid value for channel.\n")
+        unless exists($CHANNELS->{$param->{channel}});
+    croak("ERROR: Missing key mm from input hash.\n")
+        if (defined($param->{yyyy}) && !exists($param->{mm}));
+    croak("ERROR: Missing key dd from input hash.\n")
+        if (defined($param->{yyyy}) && !exists($param->{dd}));
+    croak("ERROR: Missing key yyyy from input hash.\n")
+        if (defined($param->{mm}) && !exists($param->{yyyy}));
+    croak("ERROR: Missing key dd from input hash.\n")
+        if (defined($param->{mm}) && !exists($param->{dd}));
+    croak("ERROR: Missing key yyyy from input hash.\n")
+        if (defined($param->{dd}) && !exists($param->{yyyy}));
+    croak("ERROR: Missing key mm from input hash.\n")
+        if (defined($param->{dd}) && !exists($param->{mm}));
+    my $count = 0;
+    $count = 3 if (defined($param->{yyyy}) && defined($param->{mm}) && defined($param->{dd}));    
+    croak("ERROR: Invalid number of keys found in the input hash.\n")
+        if (($param->{channel} =~ /bbc[one|two]/i) && (scalar(keys %{$param}) != (2+$count)));
+    croak("ERROR: Invalid number of keys found in the input hash.\n")
+        if (($param->{channel} !~ /bbc[one|two]/i) && (scalar(keys %{$param}) != (1+$count)));
+    croak("ERROR: Missing key location.\n")
+        if (($param->{channel} =~ /bbc[one|two]/i) && !exists($param->{location}));
+    croak("ERROR: Invalid value for location.\n")
+        if (($param->{channel} =~ /bbc[one|two]/i) && !exists($LOCATIONS->{$param->{channel}}->{$param->{location}}));
 }
 
 =head1 AUTHOR
