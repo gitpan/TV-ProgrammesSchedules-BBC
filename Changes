@@ -1,6 +1,9 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
-0.04    Wed Apr 13 17:04{00 2011
+0.05    Mon Apr 18 15:15:00 2011
+        - Cosmetics changes to the pod.
+
+0.04    Wed Apr 13 17:04:00 2011
         - Cosmetics changes to the pod.
         - Minor changes to the method as_string().
 

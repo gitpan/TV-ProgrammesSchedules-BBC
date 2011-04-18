@@ -17,11 +17,11 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
 Readonly my $CHANNELS => 
@@ -65,12 +65,12 @@ Readonly my $LOCATIONS =>
 
 =head1 SYNOPSIS
 
-The  module  provides  programmes  schedules for BBC One, BBC Two, BBC Three, BBC Four, BBC HD,
+The module  provides  programmes  schedules for BBC One, BBC Two, BBC Three, BBC Four, BBC HD,
 CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA. 
 
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | Name           | Location                    |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC One        | Cambridgeshire              |
     |                | Channel Islands             |
     |                | East                        |
@@ -86,30 +86,30 @@ CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA.
     |                | South West                  |
     |                | West Midlands               |
     |                | Yorks & Lincs               |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC Two        | England                     |
     |                | Northern Ireland            |
     |                | Northern Ireland (Analogue) |
     |                | Scotland                    |
     |                | Wales                       |
     |                | Wales (Analogue)            |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC Three      | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC Four       | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC HD         | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | CBBC           | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | CBeebies       | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC News       | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC Parliament | N/A                         |
-    ------------------------------------------------
+    +----------------+-----------------------------+
     | BBC ALBA       | N/A                         |
-    ------------------------------------------------
+    +----------------------------------------------+
 
 =cut
 
@@ -119,9 +119,9 @@ The constructor expects a reference to an anonymous hash as input parameter. Tab
 the  possible  value of various key (channel, location, yyyy, mm, dd). The yyyy, mm and dd are 
 optional. If missing picks up the current year, month and day.
 
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | Name           | Channel    | Location        | YYYY | MM | DD |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC One        | bbcone     | cambridge       | 2011 |  4 |  7 |
     |                |            | channel_islands |      |    |    |
     |                |            | east            |      |    |    |
@@ -137,30 +137,30 @@ optional. If missing picks up the current year, month and day.
     |                |            | south_west      |      |    |    |
     |                |            | west_midlands   |      |    |    |
     |                |            | east_yorkshire  |      |    |    |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC Two        | bbctwo     | england         | 2011 |  4 |  7 |
     |                |            | ni              |      |    |    |
     |                |            | ni_analogue     |      |    |    |
     |                |            | scotland        |      |    |    |
     |                |            | wales           |      |    |    |
     |                |            | wales_analogue  |      |    |    |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC Three      | bbcthree   | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC Four       | bbcfour    | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC HD         | hd         | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | CBBC           | cbbc       | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | CBeebies       | cbeebies   | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC News       | bbcnews    | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC Parliament | parliament | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
     | BBC ALBA       | bbcalba    | N/A             | 2011 |  4 |  7 |
-    ------------------------------------------------------------------
+    +----------------+------------+-----------------+------+----+----+
 
 =cut
 
@@ -343,9 +343,10 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-tv-programmesschedules-bbc at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TV-ProgrammesSchedules-BBC>.  
-I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
+Please report any bugs/feature  requests  to C<bug-tv-programmesschedules-bbc at rt.cpan.org>, 
+or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TV-ProgrammesSchedules-BBC>.  
+I will be  notified,  and  then you'll automatically be notified of progress on your  bug as I 
+make changes.
 
 =head1 SUPPORT
 
@@ -377,9 +378,9 @@ L<http://search.cpan.org/dist/TV-ProgrammesSchedules-BBC/>
 
 =head1 ACKNOWLEDGEMENTS
 
-TV::ProgrammesSchedules::BBC provides  information from BBC official website. This information should be 
-used as it is without any modifications. BBC remains the sole owner of the data. The terms and condition 
-for Personal and Non-business use can be found here http://www.bbc.co.uk/terms/personal.shtml.
+TV::ProgrammesSchedules::BBC provides  information from BBC official website. This information 
+should be used as it is without any modifications. BBC remains the sole owner of the data. The 
+terms and condition for Personal and Non-business use can be found here http://www.bbc.co.uk/terms/personal.shtml.
 
 =head1 LICENSE AND COPYRIGHT
 
@@ -393,7 +394,8 @@ See http://dev.perl.org/licenses/ for more information.
 
 =head1 DISCLAIMER
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+This  program  is  distributed in the hope that it will be useful,  but  WITHOUT ANY WARRANTY; 
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 
