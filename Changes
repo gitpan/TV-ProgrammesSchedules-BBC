@@ -1,5 +1,9 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
+0.06    Tue Apr 19 15:24:24 2011
+        - Renamed title "SYNOPSIS" to "DESCRIPTION".
+        - Minor cosmetics changes.
+
 0.05    Mon Apr 18 15:15:00 2011
         - Cosmetics changes to the pod.
 

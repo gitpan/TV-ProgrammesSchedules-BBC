@@ -17,11 +17,11 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
 Readonly my $CHANNELS => 
@@ -63,7 +63,7 @@ Readonly my $LOCATIONS =>
                 wales_analogue  => 'Wales (Analogue)' },
 };
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 The module  provides  programmes  schedules for BBC One, BBC Two, BBC Three, BBC Four, BBC HD,
 CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA. 
@@ -209,9 +209,9 @@ sub get_url
 
 =head2 get_listings()
 
-Return the programmes listings for the given channel and location (if applicable). Data would be in the 
-form of reference to a list containing anonymous hash with keys start_time, end_time, title and url for
-each of the programmes.
+Return the programmes listings for the given channel and location  (if applicable). Data would
+be in the form of reference to a list containing anonymous hash with keys start_time,end_time, 
+title and url for each of the programmes.
 
     use strict; use warnings;
     use TV::ProgrammesSchedules::BBC;
