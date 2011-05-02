@@ -1,5 +1,8 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
+0.07    Mon May 02 14:41:00 2011
+        - Added method as_xml() to return the listing in XML format.
+
 0.06    Tue Apr 19 15:24:24 2011
         - Renamed title "SYNOPSIS" to "DESCRIPTION".
         - Minor cosmetics changes.

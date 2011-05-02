@@ -17,14 +17,14 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
-Readonly my $CHANNELS => 
+Readonly my $CHANNELS =>
 {
     bbcone     => 'BBC One',
     bbctwo     => 'BBC Two',
@@ -66,7 +66,7 @@ Readonly my $LOCATIONS =>
 =head1 DESCRIPTION
 
 The module  provides  programmes  schedules for BBC One, BBC Two, BBC Three, BBC Four, BBC HD,
-CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA. 
+CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA.
 
     +----------------+-----------------------------+
     | Name           | Location                    |
@@ -115,8 +115,8 @@ CBBC, CBeebies, BBC News, BBC Parliament, BBC ALBA.
 
 =head1 CONSTRUCTOR
 
-The constructor expects a reference to an anonymous hash as input parameter. Table below shows 
-the  possible  value of various key (channel, location, yyyy, mm, dd). The yyyy, mm and dd are 
+The constructor expects a reference to an anonymous hash as input parameter. Table below shows
+the  possible  value of various key (channel, location, yyyy, mm, dd). The yyyy, mm and dd are
 optional. If missing picks up the current year, month and day.
 
     +----------------+------------+-----------------+------+----+----+
@@ -168,16 +168,16 @@ sub new
 {
     my $class = shift;
     my $param = shift;
-    
+
     _validate_param($param);
     $param->{_browser} = LWP::UserAgent->new();
     unless (defined($param->{yyyy}) && defined($param->{mm}) && defined($param->{dd}))
     {
-        my $today = localtime; 
+        my $today = localtime;
         $param->{yyyy} = $today->year+1900;
         $param->{mm}   = $today->mon+1;
         $param->{dd}   = $today->mday;
-    }    
+    }
     bless $param, $class;
     return $param;
 }
@@ -190,7 +190,7 @@ Prepare and return URL using the given information.
 
     use strict; use warnings;
     use TV::ProgrammesSchedules::BBC;
-    
+
     my $bbc = TV::ProgrammesSchedules::BBC->new({ channel => 'bbcone', location => 'london' });
     print $bbc->get_url();
 
@@ -200,22 +200,22 @@ sub get_url
 {
     my $self = shift;
     my $url  = sprintf("%s/%s/programmes/schedules", $BASE_URL, $self->{channel});
-    $url .= '/'. $self->{location} 
+    $url .= '/'. $self->{location}
         if (defined($self->{location}) && exists($LOCATIONS->{$self->{channel}}->{$self->{location}}));
     $url .= '/'. join("/", $self->{yyyy}, $self->{mm}, $self->{dd}, "ataglance");
-    
+
     return $url;
 }
 
 =head2 get_listings()
 
 Return the programmes listings for the given channel and location  (if applicable). Data would
-be in the form of reference to a list containing anonymous hash with keys start_time,end_time, 
+be in the form of reference to a list containing anonymous hash with keys start_time,end_time,
 title and url for each of the programmes.
 
     use strict; use warnings;
     use TV::ProgrammesSchedules::BBC;
-    
+
     my $bbc = TV::ProgrammesSchedules::BBC->new({ channel => 'bbcone', location => 'london' });
     my $listings = $bbc->get_listings();
 
@@ -225,25 +225,25 @@ sub get_listings
 {
     my $self = shift;
     return $self->{listings} if defined($self->{listings});
-        
+
     my $url      = $self->get_url();
     my $browser  = $self->{_browser};
     my $request  = HTTP::Request->new(GET=>$url);
     my $response = $browser->request($request);
-    croak("ERROR: Couldn't connect to [$url].\n") 
+    croak("ERROR: Couldn't connect to [$url].\n")
         unless $response->is_success;
-    
+
     my ($contents, $listings, $program, $count);
     $contents = $response->content;
     $count    = 0;
-    
+
     foreach (split(/\n/,$contents))
     {
         chomp;
         s/^\s+//g;
         s/\s+$//g;
         next if /^$/;
-    
+
         if (/\<span class=\"starttime\"\>(.*)\<\/span\>\<span class=\"endtime\"\>&#8211\;(.*)\<\/span\>/)
         {
             my($hh,$mm) = split/\:/,$1,2;
@@ -263,9 +263,44 @@ sub get_listings
             $count++;
         }
     }
-    
+
     $self->{listings} = $listings;
     return $listings;
+}
+
+=head2 as_xml()
+
+Returns listings in XML format. By default it returns todays lisitng for BBC TV.
+
+    use strict; use warnings;
+    use TV::ProgrammesSchedules::BBC;
+
+    my $bbc = TV::ProgrammesSchedules::BBC->new({ channel => 'bbcone', location => 'london' });
+    print $bbc->as_xml();
+
+=cut
+
+sub as_xml
+{
+    my $self = shift;
+    my ($xml, $listings);
+
+    $self->{listings} = $self->get_listings()
+        unless defined($self->{listings});
+
+    $xml = qq {<?xml version="1.0" encoding="UTF-8"?>\n};
+    $xml.= qq {<programmes>\n};
+    foreach (@{$self->{listings}})
+    {
+        $xml .= qq {\t<programme>\n};
+        $xml .= qq {\t\t<starttime> $_->{start_time} </starttime>\n};
+        $xml .= qq {\t\t<endtime> $_->{end_time} </endtime>\n};
+        $xml .= qq {\t\t<title> $_->{title} </title>\n};
+        $xml .= qq {\t\t<url> $_->{url} </url>\n};
+        $xml .= qq {\t</programme>\n};
+    }
+    $xml.= qq {</programmes>};
+    return $xml;
 }
 
 =head2 as_string()
@@ -288,7 +323,7 @@ sub as_string
 {
     my $self = shift;
     my ($listings);
-    
+
     $self->{listings} = $self->get_listings()
         unless defined($self->{listings});
 
@@ -306,7 +341,7 @@ sub as_string
 sub _validate_param
 {
     my $param = shift;
-    
+
     croak("ERROR: Input param has to be a ref to HASH.\n")
         if (ref($param) ne 'HASH');
     croak("ERROR: Missing key channel.\n")
@@ -326,7 +361,7 @@ sub _validate_param
     croak("ERROR: Missing key mm from input hash.\n")
         if (defined($param->{dd}) && !exists($param->{mm}));
     my $count = 0;
-    $count = 3 if (defined($param->{yyyy}) && defined($param->{mm}) && defined($param->{dd}));    
+    $count = 3 if (defined($param->{yyyy}) && defined($param->{mm}) && defined($param->{dd}));
     croak("ERROR: Invalid number of keys found in the input hash.\n")
         if (($param->{channel} =~ /bbc[one|two]/i) && (scalar(keys %{$param}) != (2+$count)));
     croak("ERROR: Invalid number of keys found in the input hash.\n")
@@ -343,9 +378,9 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 BUGS
 
-Please report any bugs/feature  requests  to C<bug-tv-programmesschedules-bbc at rt.cpan.org>, 
-or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TV-ProgrammesSchedules-BBC>.  
-I will be  notified,  and  then you'll automatically be notified of progress on your  bug as I 
+Please report any bugs/feature  requests  to C<bug-tv-programmesschedules-bbc at rt.cpan.org>,
+or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TV-ProgrammesSchedules-BBC>.
+I will be  notified,  and  then you'll automatically be notified of progress on your  bug as I
 make changes.
 
 =head1 SUPPORT
@@ -378,8 +413,8 @@ L<http://search.cpan.org/dist/TV-ProgrammesSchedules-BBC/>
 
 =head1 ACKNOWLEDGEMENTS
 
-TV::ProgrammesSchedules::BBC provides  information from BBC official website. This information 
-should be used as it is without any modifications. BBC remains the sole owner of the data. The 
+TV::ProgrammesSchedules::BBC provides  information from BBC official website. This information
+should be used as it is without any modifications. BBC remains the sole owner of the data. The
 terms and condition for Personal and Non-business use can be found here http://www.bbc.co.uk/terms/personal.shtml.
 
 =head1 LICENSE AND COPYRIGHT
@@ -394,7 +429,7 @@ See http://dev.perl.org/licenses/ for more information.
 
 =head1 DISCLAIMER
 
-This  program  is  distributed in the hope that it will be useful,  but  WITHOUT ANY WARRANTY; 
+This  program  is  distributed in the hope that it will be useful,  but  WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
