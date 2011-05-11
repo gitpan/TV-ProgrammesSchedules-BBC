@@ -19,7 +19,7 @@ name: TV-ProgrammesSchedules-BBC
 provides:
   TV::ProgrammesSchedules::BBC:
     file: lib/TV/ProgrammesSchedules/BBC.pm
-    version: 0.07
+    version: 0.08
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.07
+version: 0.08
