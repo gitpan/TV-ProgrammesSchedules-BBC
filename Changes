@@ -1,5 +1,9 @@
 Revision history for TV-ProgrammesSchedules-BBC
 
+0.09    Mon Aug 08 10:31:11 2011
+        - Made Readonly v1.03 as minimum requirement.
+        - Prepared the distribution using the Module::Signature v0.68.
+
 0.08    Wed May 11 10:21:11 2011
         - Cosmetics changes to the README.
 

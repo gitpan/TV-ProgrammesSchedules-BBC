@@ -17,12 +17,11 @@ TV::ProgrammesSchedules::BBC - Interface to BBC TV Programmes Schedules.
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =cut
 
-our $VERSION = '0.08';
-
+our $VERSION = '0.09';
 Readonly my $BASE_URL => 'http://www.bbc.co.uk';
 Readonly my $CHANNELS =>
 {

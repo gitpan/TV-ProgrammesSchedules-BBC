@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.66.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,14 +14,14 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5fb94c0ce027262db0fbeb94f1a49189b17667a8 Build.PL
-SHA1 c33c6c81222d2ca74b07f707f69e0bde42264d2a Changes
+SHA1 47eee4f148b70a69df4bc4c3b8d47211c4420894 Build.PL
+SHA1 89f75f496fdc59d85d5fb301940ef5da6c0e1b14 Changes
 SHA1 6f56911aeef23b63afb066c6317f70d905dc937d MANIFEST
 SHA1 7d20e4e840781030202bb045d5ab81b3fd1b68b0 MANIFEST.SKIP
-SHA1 c9ef6b73a0b77fe35f85cc6e3ee5fe553e2ce6ea META.yml
-SHA1 b088cdb419d2b65cf6794a117b728eb73ad02c84 Makefile.PL
+SHA1 3a20d3f2e4ff1f4225b7fab0b7d1d00e8b36fba7 META.yml
+SHA1 b0a3d846025a226fe138b794202355f42f54eb51 Makefile.PL
 SHA1 052a551a422baba6b050773663769f993ae8742b README
-SHA1 07cb005966098d8025c3f94fcd9006adf06847a9 lib/TV/ProgrammesSchedules/BBC.pm
+SHA1 4659ffb2fdbd274f25937de88ae8f8e277a6e751 lib/TV/ProgrammesSchedules/BBC.pm
 SHA1 b02f9f448dc43ce7bfa14b971a80af51d8e625af t/00-load.t
 SHA1 bebb81ef32cc47484675eb49d3be3ecded0ca1ad t/01-unit-test.t
 SHA1 2b8ffb7e4f399af95d092743846ac8d438f2c53e t/manifest.t
@@ -29,11 +29,11 @@ SHA1 0765c9ff0cc4319f415bb08d0053b7717a8284a2 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.14 (MingW32)
 
-iQEcBAEBAgAGBQJNylVSAAoJEPYcXBXhRYOhxeYH/2pCgOXZTsnC3UOABczoU5w3
-+rO3BjtAJWn+tIrpA4WNyJG4jMNIpGKCUqZQhpxTNLlcYrDz8A4meLr6PVmvDraH
-rgzyV6/hEeGxwNgPpgVfMDAAn0Y2tL+a7AxXlOfy01wKQkIxo+t9KwDfrjPzGHjU
-6/urIENrwnhgNfD6N5c9lmVlilJ2847EDFVNGI1J/RK9o9RY7y4Nfx6pYSYfFutz
-qkiW8TBwiKGfaEvoCqtLX0opd7QFjIuzKsEGn9xS5xiY/XeXWwA8L7dL+EqpI7HI
-9SKonuqWbOhGxtgoKSh6pTXV02pOhxqQ2qZBOrEL75L64tede91+v7Q55CoMQGQ=
-=sYbp
+iQEcBAEBAgAGBQJOP61HAAoJEPYcXBXhRYOh7R0H/2cqxq/NgD9EC3M+a6GWLlHe
+MuEVL8icFFWIq8LH+hFgWYQOKjU3pacFthctFpquiYzQpAYlcu+TrspU1dlrgq9y
+eqSdvnQJj9si9rO5GZOMDdQduPiDTwKoGSR8blZNplXIL5dnxNPdQRIK8yJvo+q4
++E6ENlhesQfhJ9pPNyFESa37oc0Y8rIBrgrFOtegj6cP+7J0yyEtt+07DuuXO2wt
+5O6S3LD+YXcqy8httLOOb+5Q3umAv1o5OlDdhq0Xr2wgSq8LI+994Nrpnc+U6lX+
+j3VuYb4BhdjY6akX5t6rxKKoO2m+DiuI+tn6y8VMW0KRpdGBDB79vvH5hf18UIw=
+=9Ddy
 -----END PGP SIGNATURE-----
